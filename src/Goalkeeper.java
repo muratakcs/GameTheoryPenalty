@@ -2,35 +2,25 @@ import java.util.Random;
 
 public class Goalkeeper {
 
-    int abl; // Left saving ability
-    int abm; // Middle saving ability
-    int abr; // Right saving ability
+    int[] a; //saving abilities 0:left 1:middle 2:right
 
-    int np; // Number of penalties
+    int p; // Number of penalties
 
-    int nl; // Number of left shots
-    int nm; // Number of middle shots
-    int nr; // Number of right shots
+    int[] n; // Number of shots 0:left 1:middle 2:right
 
-    int nlm; // Number of left misses
-    int nmm; // Number of middle misses
-    int nrm; // Number of right misses
+    int[] m; // Number of misses 0:left 1:middle 2:right
 
-    int nls; // Number of left saves
-    int nms; // Number of middle saves
-    int nrs; // Number of right saves
+    int[] s; // Number of saves 0:left 1:middle 2:right
 
-    double probl; // Probability of jumping left
-    double probm; // Probability of staying in the middle
-    double probr; // Probability of jumping right
+    double[] pr; // Probability of shooting sides 0:left 1:middle 2:right
 
     public Goalkeeper(int l, int m, int r) {
-        abl = l;
-        abm = m;
-        abr = r;
-        probl = 0.40;
-        probr = 0.40;
-        probm = 0.20;
+        a[0] = l;
+        a[1] = m;
+        a[2] = r;
+        pr[0]=0.40;
+        pr[1]=0.20;
+        pr[2]=0.40;
     }
 
     public void report(int side_gk, int side_sh, boolean miss, boolean save) {
@@ -40,8 +30,8 @@ public class Goalkeeper {
     public int decide() {
         Random rand =new Random();
         int x = rand.nextInt(1000);
-        if(x<1000*probl) return 0; //left;
-        if(x<1000*(probl+probm)) return 1; //middle;
+        if(x<1000*pr[0]) return 0; //left;
+        if(x<1000*(pr[0]+pr[1])) return 1; //middle;
         return 2; //right;
     }
 
