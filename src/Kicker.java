@@ -1,6 +1,12 @@
 import java.util.Random;
 
 public class Kicker {
+
+    int abl; // Left shooting ability
+    int abm; // Middle shooting ability
+    int abr; // Right shooting ability
+
+
     int np; // Number of penalties
 
     int nl; // Number of left shots
@@ -19,7 +25,10 @@ public class Kicker {
     double probm; // Probability of shooting to the middle
     double probr; // Probability of shooting right
 
-    public Kicker() {
+    public Kicker(int l, int m, int r) {
+        abl = l;
+        abm = m;
+        abr = r;
         probl=0.40;
         probr=0.40;
         probm=0.20;
