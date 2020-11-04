@@ -19,6 +19,23 @@ public class Goalkeeper {
     double probm; // Probability of staying in the middle
     double probr; // Probability of jumping right
 
+    public Goalkeeper() {
+        probl=0.40;
+        probr=0.40;
+        probm=0.20;
+    }
+
+    public void report(int side_gk, int side_sh, boolean miss, boolean save) {
+
+    }
+
+    public int decide() {
+        Random rand =new Random();
+        int x = rand.nextInt(1000);
+        if(x<1000*probl) return 0; //left;
+        if(x<1000*(probl+probm)) return 1; //middle;
+        return 2; //right;
+    }
 
 
 }
