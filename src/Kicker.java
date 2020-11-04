@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Kicker {
@@ -8,6 +9,8 @@ public class Kicker {
     double[] pr; // Probability of shooting sides 0:left 1:middle 2:right
 
     public Kicker(String nm, int l, int m, int r) {
+        a = new int[3];
+        pr = new double[3];
         name = nm;
         a[0] = l;
         a[1] = m;
@@ -30,5 +33,15 @@ public class Kicker {
         if(x<1000*pr[0]) return 0; //left;
         if(x<1000*(pr[0]+pr[1])) return 1; //middle;
         return 2; //right;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Testing Kicker");
+        Kicker k = new Kicker("Ronaldo", 95, 95, 95);
+        int[] counter = new int[3];
+        for(int i=0; i<100000; i++) {
+            counter[k.decide()]++;
+        }
+        System.out.println(Arrays.toString(counter));
     }
 }
