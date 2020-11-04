@@ -1,6 +1,11 @@
 import java.util.Random;
 
 public class Goalkeeper {
+
+    int abl; // Left saving ability
+    int abm; // Middle saving ability
+    int abr; // Right saving ability
+
     int np; // Number of penalties
 
     int nl; // Number of left shots
@@ -19,10 +24,13 @@ public class Goalkeeper {
     double probm; // Probability of staying in the middle
     double probr; // Probability of jumping right
 
-    public Goalkeeper() {
-        probl=0.40;
-        probr=0.40;
-        probm=0.20;
+    public Goalkeeper(int l, int m, int r) {
+        abl = l;
+        abm = m;
+        abr = r;
+        probl = 0.40;
+        probr = 0.40;
+        probm = 0.20;
     }
 
     public void report(int side_gk, int side_sh, boolean miss, boolean save) {
