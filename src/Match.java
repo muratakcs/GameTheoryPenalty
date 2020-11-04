@@ -9,17 +9,9 @@ public class Match {
     }
 
     public int process() {
-        int kickside;
-        int jumpside;
-        int score = 0;
-        for(int i=0 ;i<numpen; i++) {
-            kickside = k.decide();
-            jumpside = gk.decide();
-            if(kickside!=jumpside) {
-                score++;
-            }
-        }
-        return score;
+        int scores = 0;
+
+        return scores;
     }
 
 }
