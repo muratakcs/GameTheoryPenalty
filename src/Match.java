@@ -7,6 +7,7 @@ public class Match {
     private Player k,g; //kicker and goalkeeper
     private int[] kab,gab; //k and g abilities
     private int np;
+    private boolean commentary = false;
     public Match(Player pa, Player pb, int[] pa_abilities, int[] pb_abilities, int numpen) {
         k=pa;
         g=pb;
@@ -16,7 +17,7 @@ public class Match {
     }
 
     public int[][][] play() {
-        System.out.println("Kicker: "+k.getName() + " --- vs --- Goalie: "+g.getName());
+        if(commentary)System.out.println("Kicker: "+k.getName() + " --- vs --- Goalie: "+g.getName());
         int[][][] result = new int[3][3][4]; // indices: [kicker's side][goalie's side][miss/save/goal] counts
         // The fourth index (index 3) of the last dimension is for score.
         // Only one cell used: result[0][0][3] is the number of goals.
@@ -33,11 +34,11 @@ public class Match {
             // Actually making the kick:
             res = kick.shoot();
 
-            System.out.println(k.getName()+" "+kactions[res[0]] + " and "+g.getName()+" "+gactions[res[1]]+" "+yield[res[2]]);
+            if(commentary)System.out.println(k.getName()+" "+kactions[res[0]] + " and "+g.getName()+" "+gactions[res[1]]+" "+yield[res[2]]);
             result[res[0]][res[1]][res[2]]++; // updating stats.
             if(res[2]==2) result[0][0][3]++; // increment goals if scored.
         }
-        System.out.println(k.getName()+ " makes "+result[0][0][3]+" of 5 shoots!");
+        if(commentary)System.out.println(k.getName()+ " makes "+result[0][0][3]+" of "+np+" shoots!");
         return result;
     }
 
@@ -50,7 +51,7 @@ public class Match {
         int[] gab = {50, 40, 30};
         Match m = new Match(k, g, kab, gab, 5);
         int[][][] score = m.play();
-        System.out.println("Kicker makes "+score[0][0][3]+" of 5 shoots!");
+        System.out.println("Kicker makes "+score[0][0][3]+" of "+5+" shoots!");
     }
 
 }

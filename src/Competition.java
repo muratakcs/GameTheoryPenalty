@@ -31,6 +31,7 @@ public class Competition {
     }
 
     public void run() {
+        System.out.println("-----Akdeniz Game Theory Penalty Tournament-----");
         Match[][] matches = new Match[N][N];
         int[][][] tempresult;
         for(int i=0; i<N; i++) {
