@@ -16,7 +16,7 @@ public class Match {
     }
 
     public int[][][] play() {
-        System.out.println("Kicker: "+k.name + " --- vs --- Goalie: "+g.name);
+        System.out.println("Kicker: "+k.getName() + " --- vs --- Goalie: "+g.getName());
         int[][][] result = new int[3][3][4]; // indices: [kicker's side][goalie's side][miss/save/goal] counts
         // The fourth index (index 3) of the last dimension is for score.
         // Only one cell used: result[0][0][3] is the number of goals.
@@ -33,7 +33,7 @@ public class Match {
             // Actually making the kick:
             res = kick.shoot();
 
-            System.out.println(k.name+" "+kactions[res[0]] + " and "+g.name+" "+gactions[res[1]]+" "+yield[res[2]]);
+            System.out.println(k.getName()+" "+kactions[res[0]] + " and "+g.getName()+" "+gactions[res[1]]+" "+yield[res[2]]);
             result[res[0]][res[1]][res[2]]++; // updating stats.
             if(res[2]==2) result[0][0][3]++; // increment goals if scored.
         }
