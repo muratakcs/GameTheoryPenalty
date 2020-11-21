@@ -1,27 +1,55 @@
+import java.util.Arrays;
+
 public class Match {
-    Player p1;
-    Player p2;
-    public Match(Player pa, Player pb) {
-        p1 = pa;
-        p2 = pb;
+    private static final String[] kactions = {"kicks to the left", "kicks to the middle", "kicks to the right"};
+    private static final String[] gactions = {"jumps to the left", "stays in the middle", "jumps to the right"};
+    private static final String[] yield = {"the kicker misses!", "the goalie saves!", "it's a goal!"};
+    private Player k,g; //kicker and goalkeeper
+    private int[] kab,gab; //k and g abilities
+    private int np;
+    public Match(Player pa, Player pb, int[] pa_abilities, int[] pb_abilities, int numpen) {
+        k=pa;
+        g=pb;
+        kab = pa_abilities; // L M R shooting
+        gab = pb_abilities; // L M R saving
+        np = numpen;
     }
 
-    public int[] process() {
-        int score1 = 0;
-        int score2 = 0;
-        PenaltyKick kick;
-        int[] result;
-        for(int i=0; i<Competition.getNp(); i++) {
-            System.out.println("GK: "+ p1.name + " K: "+p2.name);
-            kick = new PenaltyKick(p2, p1);
-            result = kick.shoot();
+    public int[][][] play() {
+        System.out.println("Kicker: "+k.name + " --- vs --- Goalie: "+g.name);
+        int[][][] result = new int[3][3][4]; // indices: [kicker's side][goalie's side][miss/save/goal] counts
+        // The fourth index (index 3) of the last dimension is for score.
+        // Only one cell used: result[0][0][3] is the number of goals.
 
-            System.out.println("GK: "+ p2.name + " K: "+p1.name);
-            kick = new PenaltyKick(p1, p2);
-            result = kick.shoot();
+        PenaltyKick kick;
+
+        int res[];
+
+        for(int i=0; i<np; i++) {
+
+            // We set the penalty kick up.
+            kick = new PenaltyKick(k, g, kab, gab);
+
+            // Actually making the kick:
+            res = kick.shoot();
+
+            System.out.println(k.name+" "+kactions[res[0]] + " and "+g.name+" "+gactions[res[1]]+" "+yield[res[2]]);
+            result[res[0]][res[1]][res[2]]++; // updating stats.
+            if(res[2]==2) result[0][0][3]++; // increment goals if scored.
         }
-        int[] score = {score1, score2};
-        return score;
+        return result;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println("Testing match class");
+        Player k = new Player("Ronaldinho");
+        Player g = new Player("Schmeichel");
+        int[] kab = {80, 70, 60};
+        int[] gab = {50, 40, 30};
+        Match m = new Match(k, g, kab, gab, 5);
+        int[][][] score = m.play();
+        System.out.println("Kicker makes "+score[0][0][3]+" of 5 shoots!");
     }
 
 }
