@@ -37,6 +37,7 @@ public class Match {
             result[res[0]][res[1]][res[2]]++; // updating stats.
             if(res[2]==2) result[0][0][3]++; // increment goals if scored.
         }
+        System.out.println(k.getName()+ " makes "+result[0][0][3]+" of 5 shoots!");
         return result;
     }
 
