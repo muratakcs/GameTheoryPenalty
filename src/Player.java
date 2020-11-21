@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Player {
-    String name;
+    private String name;
 
     // pr is the crucial variable that a player needs to determine before each penalty kick.
     // It should be carefully set obeying game theoretical rules when deciding which side to select.
@@ -36,6 +36,10 @@ public class Player {
 
     public String briefIntro() {
         return "Hi, my name is ..., I always shoot to right, this is my way...";
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static void main(String[] args) {
