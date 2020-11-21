@@ -34,6 +34,10 @@ public class Player {
         return 2; //right;
     }
 
+    public String briefIntro() {
+        return "Hi, my name is ..., I always shoot to right, this is my way...";
+    }
+
     public static void main(String[] args) {
         System.out.println("Testing Player");
         Player p = new Player("PlayerName");
