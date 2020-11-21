@@ -11,7 +11,7 @@ public class Match {
         int score2 = 0;
         PenaltyKick kick;
         int[] result;
-        for(int i=0; i<Competition.NUMPEN; i++) {
+        for(int i=0; i<Competition.getNp(); i++) {
             System.out.println("GK: "+ p1.name + " K: "+p2.name);
             kick = new PenaltyKick(p2, p1);
             result = kick.shoot();
