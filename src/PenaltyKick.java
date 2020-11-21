@@ -60,9 +60,9 @@ public class PenaltyKick {
             c[res[0]]++;
         }
         for(int i=0; i<3; i++) {
-            System.out.println("Kicker "+ k.name +" shoots to "+i+ "    "+c[i]+" times");
+            System.out.println("Kicker "+ k.getName() +" shoots to "+i+ "    "+c[i]+" times");
             for (int j = 0; j < 3; j++) {
-                System.out.println("Goalie "+ gk.name +" jumps to "+j);
+                System.out.println("Goalie "+ gk.getName() +" jumps to "+j);
 
                 System.out.println("MISSES | SAVES | GOALS");
                 System.out.println(Arrays.toString(results[i][j]));
