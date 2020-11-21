@@ -3,31 +3,30 @@ import java.util.Random;
 
 public class Player {
     String name;
-    int[] a; //saving abilities 0:left 1:middle 2:right
-    int p; // Number of penalties
-    int[][][] results; //D1:Kickerside D2:GKSide D3:result(0:miss,1:save,2:goal)
+
+    // pr is the crucial variable that a player needs to determine before each penalty kick.
+    // It should be carefully set obeying game theoretical rules when deciding which side to select.
+    // Once pr is set to certain values, the player randomly selects the side according to pr.
     double[] pr; // Probability of jumping sides 0:left 1:middle 2:right
 
-    public Player(String nm, int l, int m, int r) {
-        a = new int[3];
-        pr = new double[3];
+    public Player(String nm) {
         name = nm;
-        a[0] = l;
-        a[1] = m;
-        a[2] = r;
+        pr = new double[3];
         pr[0]=0.40;
         pr[1]=0.20;
         pr[2]=0.40;
-        results = new int[3][3][3];
-    }
-
-    public void report(int kside, int gkside, int res) {
-        results[kside][gkside][res]++;
-        // Here, one may want to play with the pr array (probabilities of jumping to which side)
     }
 
     // Decide method just uses the probabilities calculated above. Do not change this method.
-    public int decide() {
+    public int decide(boolean isKicker, Player opponent) {
+
+        //Here, set pr values before each penalty kick carefully...
+        pr[0]=0.40;
+        pr[1]=0.25;
+        pr[2]=0.35;
+
+
+        // You do not need to modify the rest, it just selects the sides depending on pr values.
         Random rand =new Random();
         int x = rand.nextInt(1000);
         if(x<1000*pr[0]) return 0; //left;
@@ -36,11 +35,11 @@ public class Player {
     }
 
     public static void main(String[] args) {
-        System.out.println("Testing Kicker");
-        Player k = new Player("Schmeichel", 95, 95, 95);
+        System.out.println("Testing Player");
+        Player p = new Player("PlayerName");
         int[] counter = new int[3];
         for(int i=0; i<100000; i++) {
-            counter[k.decide()]++;
+            counter[p.decide(false,p)]++;
         }
         System.out.println(Arrays.toString(counter));
     }
