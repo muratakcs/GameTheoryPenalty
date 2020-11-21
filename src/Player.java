@@ -1,14 +1,14 @@
 import java.util.Arrays;
 import java.util.Random;
 
-public class Goalkeeper {
+public class Player {
     String name;
     int[] a; //saving abilities 0:left 1:middle 2:right
     int p; // Number of penalties
     int[][][] results; //D1:Kickerside D2:GKSide D3:result(0:miss,1:save,2:goal)
     double[] pr; // Probability of jumping sides 0:left 1:middle 2:right
 
-    public Goalkeeper(String nm, int l, int m, int r) {
+    public Player(String nm, int l, int m, int r) {
         a = new int[3];
         pr = new double[3];
         name = nm;
@@ -37,7 +37,7 @@ public class Goalkeeper {
 
     public static void main(String[] args) {
         System.out.println("Testing Kicker");
-        Kicker k = new Kicker("Schmeichel", 95, 95, 95);
+        Player k = new Player("Schmeichel", 95, 95, 95);
         int[] counter = new int[3];
         for(int i=0; i<100000; i++) {
             counter[k.decide()]++;

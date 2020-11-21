@@ -1,9 +1,9 @@
 public class Match {
-    Team t1;
-    Team t2;
-    public Match(Team ta, Team tb) {
-        t1 = ta;
-        t2 = tb;
+    Player p1;
+    Player p2;
+    public Match(Player pa, Player pb) {
+        p1 = pa;
+        p2 = pb;
     }
 
     public int[] process() {
@@ -12,12 +12,12 @@ public class Match {
         PenaltyKick kick;
         int[] result;
         for(int i=0; i<Competition.NUMPEN; i++) {
-            System.out.println("GK: "+ t1.gk.name + " K: "+t2.k.name);
-            kick = new PenaltyKick(t2.k, t1.gk);
+            System.out.println("GK: "+ p1.name + " K: "+p2.name);
+            kick = new PenaltyKick(p2, p1);
             result = kick.shoot();
 
-            System.out.println("GK: "+ t2.gk.name + " K: "+t1.k.name);
-            kick = new PenaltyKick(t1.k, t2.gk);
+            System.out.println("GK: "+ p2.name + " K: "+p1.name);
+            kick = new PenaltyKick(p1, p2);
             result = kick.shoot();
         }
         int[] score = {score1, score2};

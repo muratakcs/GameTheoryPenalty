@@ -2,11 +2,11 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class PenaltyKick {
-    Kicker k;
-    Goalkeeper gk;
+    Player k;
+    Player gk;
     Random rand;
     double[] ps;
-    public PenaltyKick(Kicker kicker, Goalkeeper gkeep) {
+    public PenaltyKick(Player kicker, Player gkeep) {
         k = kicker;
         gk = gkeep;
         rand = new Random();
@@ -43,8 +43,8 @@ public class PenaltyKick {
 
     public static void main(String[] args) {
         System.out.println("Testing PenaltyKick class");
-        Goalkeeper gk = new Goalkeeper("Zubizarreta", 90, 90, 30);
-        Kicker k = new Kicker("Baggio", 90, 20, 90);
+        Player gk = new Player("Zubizarreta", 90, 90, 30);
+        Player k = new Player("Baggio", 90, 20, 90);
         PenaltyKick pk;
         int[][][] results = new int[3][3][3];
         int[] res;
