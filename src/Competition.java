@@ -31,17 +31,21 @@ public class Competition {
     }
 
     public void run() {
+
         System.out.println("-----Akdeniz Game Theory Penalty Tournament-----");
         Match[][] matches = new Match[N][N];
         int[][][] tempresult;
         for(int i=0; i<N; i++) {
             for(int j=i+1; j<N; j++) {
+
                 matches[i][j] = new Match(players[i],players[j],kab[i],gab[j],numpen);
                 tempresult = matches[i][j].play();
                 addStats(i,j,tempresult,stats);
+
                 matches[j][i] = new Match(players[j],players[i],kab[j],gab[i],numpen);
                 tempresult = matches[j][i].play();
                 addStats(j,i,tempresult,stats);
+
             }
         }
     }
@@ -56,10 +60,26 @@ public class Competition {
         }
     }
 
+    private void reportResults() {
+        for(int k=0; k<N; k++) {
+            for(int g=k+1; g<N; g++) {
+                System.out.println(players[k].getName()+" vs "+players[g].getName()+": "+stats[k][g][0][0][3]+" : "+stats[g][k][0][0][3]);
+                for(int i=0; i<3; i++) {
+                    for(int j=0; j<3; j++) {
+                        for(int m=0; m<3; m++) {
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        Player[] exampleplayers = new Player[4];
-        int[][] kabilities = new int[4][3];
-        int[][] gabilities = new int[4][3];
+        int NUMPLAYERS=6;
+        Player[] exampleplayers = new Player[NUMPLAYERS];
+        int[][] kabilities = new int[NUMPLAYERS][3];
+        int[][] gabilities = new int[NUMPLAYERS][3];
         URL url = exampleplayers.getClass().getResource("players.txt");
         try {
             File file = new File(url.getPath());
@@ -80,23 +100,27 @@ public class Competition {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        Competition GameTheory2020 = new Competition(exampleplayers, kabilities, gabilities, 5);
+        exampleplayers[4] = new PlayerMurat();
+        kabilities[4][0]=60;
+        kabilities[4][1]=60;
+        kabilities[4][2]=60;
+        gabilities[4][0]=60;
+        gabilities[4][1]=60;
+        gabilities[4][2]=60;
+
+        exampleplayers[5] = new PlayerAgainstMurat();
+        kabilities[5][0]=60;
+        kabilities[5][1]=60;
+        kabilities[5][2]=60;
+        gabilities[5][0]=60;
+        gabilities[5][1]=60;
+        gabilities[5][2]=60;
+
+
+        Competition GameTheory2020 = new Competition(exampleplayers, kabilities, gabilities, 10000);
         GameTheory2020.run();
         GameTheory2020.reportResults();
     }
 
-    private void reportResults() {
-        for(int k=0; k<N; k++) {
-            for(int g=k+1; g<N; g++) {
-                System.out.println(players[k].getName()+" vs "+players[g].getName()+": "+stats[k][g][0][0][3]+" : "+stats[g][k][0][0][3]);
-                for(int i=0; i<3; i++) {
-                    for(int j=0; j<3; j++) {
-                        for(int m=0; m<3; m++) {
 
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
