@@ -8,12 +8,14 @@ public class Match {
     private int[] kab,gab; //k and g abilities
     private int np;
     private boolean commentary = false;
-    public Match(Player pa, Player pb, int[] pa_abilities, int[] pb_abilities, int numpen) {
+    private Competition comp; // A match must be aware of which competition it is in.
+    public Match(Player pa, Player pb, int[] pa_abilities, int[] pb_abilities, int numpen, Competition c) {
         k=pa;
         g=pb;
         kab = pa_abilities; // L M R shooting
         gab = pb_abilities; // L M R saving
         np = numpen;
+        comp = c;
     }
 
     public int[][][] play() {
@@ -29,7 +31,7 @@ public class Match {
         for(int i=0; i<np; i++) {
 
             // We set the penalty kick up.
-            kick = new PenaltyKick(k, g, kab, gab);
+            kick = new PenaltyKick(k, g, kab, gab, comp);
 
             // Actually making the kick:
             res = kick.shoot();
@@ -49,7 +51,7 @@ public class Match {
         Player g = new Player("Schmeichel");
         int[] kab = {80, 70, 60};
         int[] gab = {50, 40, 30};
-        Match m = new Match(k, g, kab, gab, 5);
+        Match m = new Match(k, g, kab, gab, 5,null);
         int[][][] score = m.play();
         System.out.println("Kicker makes "+score[0][0][3]+" of "+5+" shoots!");
     }

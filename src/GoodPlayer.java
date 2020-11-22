@@ -1,24 +1,22 @@
 import java.util.Arrays;
-import java.util.Random;
 
-public class PlayerMurat extends Player{
-
-    public PlayerMurat() {
-        super("MuratAk");
+public class GoodPlayer extends Player{
+    public GoodPlayer(String nm) {
+        super(nm);
     }
-
 
     public String briefIntro() {
-        return "Hi, my name is Murat, I always shoot and jump to the right!";
+        return "Hi, my name is "+this.getName()+", I'm a strategic thinker and always play intelligently by looking at the stats so far.";
     }
 
 
-    // Decide method just uses the probabilities calculated above. Do not change this method.
     public int decide(boolean isKicker, Player opponent, Competition comp) {
 
-        // (Shooting always to the same side... Not a good strategy...
-        // Especially because when your opponents learn this strategy
-        // they can adapt their strategy and get a huge advantage.)
+        // Since I'm a good player, I will look at the stats with my opponent first.
+        // Example stats retrieval:
+
+        System.out.println("When I shoot to left and opponent jumps to left I scored this many times:"+comp.getStat(this,opponent,0,0,3));
+
         pr[0]=0;
         pr[1]=0;
         pr[2]=1.0;
@@ -46,5 +44,4 @@ public class PlayerMurat extends Player{
         }
         System.out.println(Arrays.toString(counter));
     }
-
 }

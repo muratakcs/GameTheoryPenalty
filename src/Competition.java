@@ -26,8 +26,19 @@ public class Competition {
 
     public static int getNp() {return numpen;}
 
-    public int getStat(int kickerid, int goalieid, int kside, int gside, int tot_or_goal) {
-        return stats[kickerid][goalieid][kside][gside][tot_or_goal];
+    public int getStat(Player kicker, Player goalie, int kside, int gside, int tot_or_goal) {
+        int kid=-1;
+        int gid=-1;
+        for(int i=0; i<N; i++) {
+            if(players[i].getName().equals(kicker.getName())) kid=i;
+            else if(players[i].getName().equals(goalie.getName())) gid=i;
+            if(kid>=0 && gid>=0) break;
+        }
+        if(kid<0 || gid<0) {
+            System.out.println("Player not found error!");
+            System.exit(0);
+        }
+        return stats[kid][gid][kside][gside][tot_or_goal];
     }
 
     public void run() {
@@ -38,11 +49,11 @@ public class Competition {
         for(int i=0; i<N; i++) {
             for(int j=i+1; j<N; j++) {
 
-                matches[i][j] = new Match(players[i],players[j],kab[i],gab[j],numpen);
+                matches[i][j] = new Match(players[i],players[j],kab[i],gab[j],numpen,this);
                 tempresult = matches[i][j].play();
                 addStats(i,j,tempresult,stats);
 
-                matches[j][i] = new Match(players[j],players[i],kab[j],gab[i],numpen);
+                matches[j][i] = new Match(players[j],players[i],kab[j],gab[i],numpen,this);
                 tempresult = matches[j][i].play();
                 addStats(j,i,tempresult,stats);
 

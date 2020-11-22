@@ -11,7 +11,7 @@ public class PlayerAgainstMurat extends Player{
 
 
     // Decide method just uses the probabilities calculated above. Do not change this method.
-    public int decide(boolean isKicker, Player opponent) {
+    public int decide(boolean isKicker, Player opponent, Competition comp) {
 
         // (Shooting always to the same side... Not a good strategy...
         // Especially because when your opponents learn this strategy
@@ -48,7 +48,7 @@ public class PlayerAgainstMurat extends Player{
         System.out.println(p.getName()+ " intro: "+p.briefIntro());
         int[] counter = new int[3];
         for(int i=0; i<100000; i++) {
-            counter[p.decide(true,p)]++;
+            counter[p.decide(true,p,null)]++;
         }
         System.out.println(Arrays.toString(counter));
     }
