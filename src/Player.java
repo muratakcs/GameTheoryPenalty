@@ -9,12 +9,17 @@ public class Player {
     // Once pr is set to certain values, the player randomly selects the side according to pr.
     double[] pr; // Probability of jumping sides 0:left 1:middle 2:right
 
+
     public Player(String nm) {
         name = nm;
         pr = new double[3];
         pr[0]=0.40;
         pr[1]=0.20;
         pr[2]=0.40;
+    }
+
+    public String briefIntro() {
+        return "Hi, my name is "+name+", I always choose sides with these probabilities: 40% to left, 35% to right, 25% to middle.";
     }
 
     // Decide method just uses the probabilities calculated above. Do not change this method.
@@ -34,17 +39,14 @@ public class Player {
         return 2; //right;
     }
 
-    public String briefIntro() {
-        return "Hi, my name is ..., I always shoot to right, this is my way...";
-    }
 
     public String getName() {
         return name;
     }
 
     public static void main(String[] args) {
-        System.out.println("Testing Player");
-        Player p = new Player("PlayerName");
+        Player p = new Player("DefaultPlayer");
+        System.out.println(p.getName()+ " intro: "+p.briefIntro());
         int[] counter = new int[3];
         for(int i=0; i<100000; i++) {
             counter[p.decide(false,p)]++;
