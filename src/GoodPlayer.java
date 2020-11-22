@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class GoodPlayer extends Player{
     public GoodPlayer(String nm) {
@@ -10,27 +11,26 @@ public class GoodPlayer extends Player{
     }
 
 
-    public int decide(boolean isKicker, Player opponent, Competition comp) {
+    public int decide(boolean isKicker, Player opponent, Competition comp, Match match) {
 
         // Since I'm a good player, I will look at the stats with my opponent first.
         // Example stats retrieval:
 
-        System.out.println("When I shoot to left and opponent jumps to left I scored this many times:"+comp.getStat(this,opponent,0,0,3));
+        //System.out.println("When I shoot to left and "+opponent.getName()+" jumps to left I missed this many times:"+match.getMatchStats(0,0,1));
 
-        pr[0]=0;
-        pr[1]=0;
-        pr[2]=1.0;
+        pr[0]=0.4;
+        pr[1]=0.2;
+        pr[2]=0.4;
 
 
         // You do not need to modify the rest, it just selects the sides depending on pr values.
-        /*Random rand =new Random();
+        Random rand =new Random();
         int x = rand.nextInt(1000);
         if(x<1000*pr[0]) return 0; //left;
         if(x<1000*(pr[0]+pr[1])) return 1; //middle;
-        return 2; //right;*/
+        return 2; //right;
 
-        //Since the probability is fixed, we can return right immediately...
-        return 2;
+
 
     }
 
@@ -40,7 +40,7 @@ public class GoodPlayer extends Player{
         System.out.println(p.getName()+ " intro: "+p.briefIntro());
         int[] counter = new int[3];
         for(int i=0; i<100000; i++) {
-            counter[p.decide(false,p,null)]++;
+            counter[p.decide(false,p,null,null)]++;
         }
         System.out.println(Arrays.toString(counter));
     }

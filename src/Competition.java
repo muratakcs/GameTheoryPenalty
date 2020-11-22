@@ -26,7 +26,7 @@ public class Competition {
 
     public static int getNp() {return numpen;}
 
-    public int getStat(Player kicker, Player goalie, int kside, int gside, int tot_or_goal) {
+    public int getStat(Player kicker, Player goalie, int kside, int gside, int type) {
         int kid=-1;
         int gid=-1;
         for(int i=0; i<N; i++) {
@@ -38,7 +38,7 @@ public class Competition {
             System.out.println("Player not found error!");
             System.exit(0);
         }
-        return stats[kid][gid][kside][gside][tot_or_goal];
+        return stats[kid][gid][kside][gside][type];
     }
 
     public void run() {
@@ -87,7 +87,7 @@ public class Competition {
     }
 
     public static void main(String[] args) {
-        int NUMPLAYERS=6;
+        int NUMPLAYERS=7;
         Player[] exampleplayers = new Player[NUMPLAYERS];
         int[][] kabilities = new int[NUMPLAYERS][3];
         int[][] gabilities = new int[NUMPLAYERS][3];
@@ -126,6 +126,14 @@ public class Competition {
         gabilities[5][0]=60;
         gabilities[5][1]=60;
         gabilities[5][2]=60;
+
+        exampleplayers[6] = new GoodPlayer("GoodPlayer");
+        kabilities[6][0]=60;
+        kabilities[6][1]=60;
+        kabilities[6][2]=60;
+        gabilities[6][0]=60;
+        gabilities[6][1]=60;
+        gabilities[6][2]=60;
 
 
         Competition GameTheory2020 = new Competition(exampleplayers, kabilities, gabilities, 10000);

@@ -9,14 +9,15 @@ public class PenaltyKick {
     private int[] kab;
     private int[] gab;
     private Competition comp;
+    private Match match;
 
-    public PenaltyKick(Player kicker, Player gkeep, int[] kabi, int[] gabi, Competition c) {
+    public PenaltyKick(Player kicker, Player gkeep, int[] kabi, int[] gabi, Competition c, Match m) {
         k = kicker;
         g = gkeep;
         kab = kabi; // index:ability  ->  0:kl(kicker left) 1:km 2: kr
         gab = gabi; // index:ability  ->  0:gl 1:gm 2:gr
         comp = c; // A penalty kick object must know which competition it is in.
-
+        match = m;
         rand = new Random();
         prscore = new double[3]; // probability of scoring for each side, given the abilities...
         for(int i=0; i<3; i++)
@@ -24,8 +25,8 @@ public class PenaltyKick {
     }
     public int[] shoot() {
         int[] result = new int[3]; // kickside, jumpside, whathappened?0:missed,1:saved,2:scored.
-        result[0] = k.decide(true, g, comp); // kicker decides
-        result[1] = g.decide(false,k, comp); // goalie decides
+        result[0] = k.decide(true, g, comp, match); // kicker decides
+        result[1] = g.decide(false,k, comp, match); // goalie decides
         int r = rand.nextInt(100)+1;
         if(r>kab[result[0]]) { // if rand is above the kickers shooting ability, miss...
             result[2]=0; // Kicker misses the goal
@@ -57,7 +58,7 @@ public class PenaltyKick {
         int[] c={0,0,0};
 
         for(int i=0; i<1000000; i++) {
-            pk = new PenaltyKick(k, gk, abk, abg,null);
+            pk = new PenaltyKick(k, gk, abk, abg,null,null);
             res = pk.shoot();
             results[res[0]][res[1]][res[2]]++;
             c[res[0]]++;
