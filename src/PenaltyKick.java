@@ -51,7 +51,7 @@ public class PenaltyKick {
         Player k = new Player("Baggio");
         Player gk = new Player("Zubizarreta");
         int[] abk = {95,80,90};
-        int[] abg = {80,90,70};
+        int[] abg = {10,90,70};
         PenaltyKick pk;
         int[][][] results = new int[3][3][3];
         int[] res;

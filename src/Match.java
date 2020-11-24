@@ -57,9 +57,10 @@ public class Match {
         Player g = new Player("Schmeichel");
         int[] kab = {80, 70, 60};
         int[] gab = {50, 40, 30};
-        Match m = new Match(k, g, kab, gab, 5,null);
+        int numpenalties = 15;
+        Match m = new Match(k, g, kab, gab, numpenalties,null);
         int[][][] score = m.play();
-        System.out.println("Kicker makes "+score[0][0][3]+" of "+5+" shoots!");
+        System.out.println("Kicker makes "+score[0][0][3]+" of "+numpenalties+" shoots!");
     }
 
 }

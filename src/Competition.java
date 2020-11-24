@@ -20,8 +20,9 @@ public class Competition {
         kab = kabilities;
         gab = gabilities;
         // stats[kicker index][goalie index][kside][gside][miss/save/goals]
-        // stats[7][5][2][1] means number of goals when player 7 as kicker shoots to player 5 as goalie to the right.
-        // stats[7][5][1][0] means number of total shots player 7 as kicker shoots to player 5 as goalie to the middle.
+        // stats[7][5][2][1][2] means number of goals when player 7 as kicker shoots to right gk jumps to left.
+        // stats[7][5][1][0][1] means number of saves when player 7 kicks to middle and gk jumps to left.
+        // stats[7][5][0][0][3] means number of goals player 7 as kicker makes against player 5 as gk.
     }
 
     public static int getNp() {return numpen;}
