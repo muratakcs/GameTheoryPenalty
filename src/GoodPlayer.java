@@ -25,9 +25,9 @@ public class GoodPlayer extends Player{
 
         // You do not need to modify the rest, it just selects the sides depending on pr values.
         Random rand =new Random();
-        int x = rand.nextInt(1000);
-        if(x<1000*pr[0]) return 0; //left;
-        if(x<1000*(pr[0]+pr[1])) return 1; //middle;
+        double x = rand.nextDouble();
+        if(x<pr[0]) return 0; //left;
+        if(x<(pr[0]+pr[1])) return 1; //middle;
         return 2; //right;
 
 
