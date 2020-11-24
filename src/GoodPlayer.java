@@ -36,7 +36,7 @@ public class GoodPlayer extends Player{
 
 
     public static void main(String[] args) {
-        Player p = new PlayerMurat();
+        Player p = new GoodPlayer("GoodPlayer");
         System.out.println(p.getName()+ " intro: "+p.briefIntro());
         int[] counter = new int[3];
         for(int i=0; i<100000; i++) {
